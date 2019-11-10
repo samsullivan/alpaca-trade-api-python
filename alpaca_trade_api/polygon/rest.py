@@ -4,7 +4,7 @@ from .entity import (
     Trade, Trades,
     Quote, Quotes,
     Exchange, SymbolTypeMap, ConditionMap,
-    Company, Dividends, Splits, Earnings, Financials, NewsList, Ticker
+    Company, Dividends, Splits, Earnings, Financial, Financials, NewsList, Ticker
 )
 from alpaca_trade_api.common import get_polygon_credentials
 
