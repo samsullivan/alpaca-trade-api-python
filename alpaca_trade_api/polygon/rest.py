@@ -4,7 +4,7 @@ from .entity import (
     Trade, Trades,
     Quote, Quotes,
     Exchange, SymbolTypeMap, ConditionMap,
-    Company, Dividends, Splits, Earnings, Financial, Financials, NewsList, Ticker
+    Company, Dividends, Splits, Earnings, Financials, NewsList, Ticker
 )
 from alpaca_trade_api.common import get_polygon_credentials
 
@@ -146,7 +146,10 @@ class REST(object):
             return self._get_symbol(symbol, 'financials', Financials)
         
         path = '/reference/financials/{}'.format(symbol)
-        return Financial(self.get(path, version='v2'))
+        return Financials([
+            financials in
+            self.get(path, version='v2')['results']
+        ]
 
     def news(self, symbol):
         path = '/meta/symbols/{}/news'.format(symbol)
