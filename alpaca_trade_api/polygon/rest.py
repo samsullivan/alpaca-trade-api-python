@@ -146,10 +146,7 @@ class REST(object):
             return self._get_symbol(symbol, 'financials', Financials)
         
         path = '/reference/financials/{}'.format(symbol)
-        return Financials([
-            financials in
-            self.get(path, version='v2')['results']
-        ])
+        return Financials(self.get(path, version='v2')['results'])
 
     def news(self, symbol):
         path = '/meta/symbols/{}/news'.format(symbol)
