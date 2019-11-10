@@ -142,7 +142,11 @@ class REST(object):
         return self._get_symbol(symbol, 'earnings', Earnings)
 
     def financials(self, symbol):
-        return self._get_symbol(symbol, 'financials', Financials)
+        if isinstance(symbol, list):
+            return self._get_symbol(symbol, 'financials', Financials)
+        
+        path = '/reference/financials/{}'.format(symbol)
+        return Financial(self.get(path, version='v2'))
 
     def news(self, symbol):
         path = '/meta/symbols/{}/news'.format(symbol)
