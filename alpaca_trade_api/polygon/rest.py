@@ -146,7 +146,11 @@ class REST(object):
             return self._get_symbol(symbol, 'financials', Financials)
         
         path = '/reference/financials/{}'.format(symbol)
-        return Financials(self.get(path, version='v2')['results'])
+        params = {}
+        params['limit'] = 4
+        params['type'] = 'Q'
+        params['sort'] = '-calendarDate'
+        return Financials(self.get(path, params, version='v2')['results'])
 
     def news(self, symbol):
         path = '/meta/symbols/{}/news'.format(symbol)
