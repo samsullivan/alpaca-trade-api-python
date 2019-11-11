@@ -146,10 +146,11 @@ class REST(object):
             return self._get_symbol(symbol, 'financials', Financials)
         
         path = '/reference/financials/{}'.format(symbol)
-        params = {}
-        params['limit'] = 4
-        params['type'] = 'Q'
-        params['sort'] = '-calendarDate'
+        params = {
+            'limit': '4',
+            'type': 'Q',
+            'sort': '-calendarDate'
+        }
         return Financials(self.get(path, params, version='v2')['results'])
 
     def news(self, symbol):
