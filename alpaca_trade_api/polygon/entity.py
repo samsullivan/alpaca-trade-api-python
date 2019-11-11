@@ -12,7 +12,7 @@ class Entity(object):
         if key in self._raw:
             val = self._raw[key]
             return val
-        return getattr(super(), key)
+        return getattr(super(), key, None)
 
     def __repr__(self):
         return '{name}({raw})'.format(
